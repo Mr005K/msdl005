@@ -1,77 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="description"
-        content="Microsoft Software Download Listing lets you browse and download products from Microsoft Software Download.">
+    <title>Microsoft Software Downloads</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #cccccc;
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="og:site_name" content="Microsoft Software Download Listing">
-    <meta property="og:title" content="Microsoft Software Download Listing">
-    <meta property="og:type" content="website">
-    <meta property="og:description"
-        content="Microsoft Software Download Listing lets you browse and download products from Microsoft Software Download.">
-    <meta property="og:image" content="/img/cover.png">
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            padding: 20px;
+        }
 
-    <title>Microsoft Software Download Listing</title>
+        .header {
+            background: linear-gradient(to bottom, #4a4a4a, #3a3a3a);
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 1px solid #555;
+            border-radius: 4px 4px 0 0;
+        }
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/msdl.js"></script>
+        h1 {
+            color: #ff6600;
+            margin: 0;
+            font-size: 24px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .product-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .product-item {
+            background: #333;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 3px;
+            transition: background 0.2s;
+        }
+
+        .product-item:hover {
+            background: #3d3d3d;
+            border-color: #555;
+        }
+
+        .product-name {
+            color: #fff;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .product-id {
+            color: #999;
+            font-size: 0.9em;
+            font-family: "Courier New", monospace;
+        }
+
+        .error-box {
+            background: #442222;
+            border: 1px solid #663333;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+            color: #ff9999;
+        }
+
+        .contact-link {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            float: right;
+            color: #666;
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+
+        .github-link:hover {
+            color: #999;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Microsoft Software Download Listing 🏳️‍🌈</h1>
-
-    <a href="https://github.com/gravesoft/msdl">
-        <b>Source code on GitHub</b>
-    </a>
-
-    <noscript>
-        <p>This page requires JavaScript to work.</p>
-    </noscript>
-
-    <div id="products-list">
-        <h2>Select product</h2>
-        <input id="search-products" type="search" placeholder="Search with regex..." onInput="updateResults();">
-        <div id="quick-search">
-            📌
-            <button onClick="setSearch('Windows 8\\.1');">Windows 8.1</button>
-            <button onClick="setSearch('Windows 10 22H2');">Latest Windows 10</button>
-            <button onClick="setSearch('24H2');">Latest Windows 11</button>
+    <div class="container">
+        <div class="header">
+            <h1>Microsoft Software Download Archive</h1>
+            <a href="#" class="github-link">View on GitHub</a>
         </div>
-        <table style="table-layout: auto;">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>ID</th>
-                </tr>
-            </thead>
-            <tbody id="products-table-body"></tbody>
-        </table>
+
+        <ul class="product-list">
+            <li class="product-item">
+                <span class="product-name">Windows 8.1</span>
+                <span class="product-id">ID: WIN81-STANDARD</span>
+            </li>
+            <li class="product-item">
+                <span class="product-name">Latest Windows 10</span>
+                <span class="product-id">ID: WIN10-LATEST</span>
+            </li>
+            <li class="product-item">
+                <span class="product-name">Latest Windows 11</span>
+                <span class="product-id">ID: WIN11-LATEST</span>
+            </li>
+        </ul>
+
+        <footer>
+            © 2012 Archive - Microsoft Download Center
+            <br>
+            Design inspired by Adobe Systems
+        </footer>
     </div>
-
-    <div id="msdl-ms-content"></div>
-
-    <div id="msdl-please-wait">
-        <h2>Please wait...</h2>
-        <p>Please wait while the data you requested is being retrieved.</p>
-    </div>
-
-    <div id="msdl-processing-error">
-        <h2>Error</h2>
-        <p>An error has occurred while processing your request. If reloading the page does not work, <a
-                href="https://gravesoft.dev/troubleshoot/">contact us</a> or create an issue on GitHub.</p>
-    </div>
-
-    <div id="back-to-products">
-        <hr>
-        <button onClick="backToProducts();">Go back to the product list</button>
-    </div>
-
-    <input id="msdl-session-id" type="hidden">
 </body>
-
 </html>
